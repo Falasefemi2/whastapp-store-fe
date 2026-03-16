@@ -13,14 +13,21 @@ import {
     DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel,
     DropdownMenuSeparator, DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
-import { IconEye, IconFileHorizontal, IconPencil, IconTrash } from '@tabler/icons-react'
+import { IconDotsVertical, IconEye, IconPencil, IconTrash } from '@tabler/icons-react'
 import { DeleteConfirmationDialog } from './delete-confirmation-dialog'
 import { useState } from 'react'
 import { useDeleteProduct, useGetAllVendorProducts, useToggleProduct, useUpdateProduct } from '@/api/vendor/vendor.queries'
 import type { Product } from '@/api/vendor/vendor.types'
+import { Link } from '@tanstack/react-router'
+import { formatNaira } from '@/lib/utils'
 
-export function ProductsTable() {
+interface ProductsTableProps {
+    limit?: number
+}
+
+export function ProductsTable({ limit }: ProductsTableProps) {
     const { data: products = [] } = useGetAllVendorProducts()
+    const displayedProducts = limit ? products.slice(0, limit) : products
     const { mutate: toggleProduct } = useToggleProduct()
     const { mutate: deleteProduct } = useDeleteProduct()
     const { mutate: updateProduct, isPending: isUpdating } = useUpdateProduct()
@@ -100,7 +107,7 @@ export function ProductsTable() {
                             </TableRow>
                         </TableHeader>
                         <TableBody>
-                            {products.map((product) => (
+                            {displayedProducts.map((product) => (
                                 <TableRow key={product.id} className="border-border hover:bg-secondary hover:bg-opacity-30">
                                     <TableCell>
                                         <div className="flex items-center gap-3">
@@ -114,7 +121,7 @@ export function ProductsTable() {
                                     </TableCell>
                                     <TableCell>
                                         <span className="text-sm font-semibold text-foreground">
-                                            ${Number(product.price).toFixed(2)}
+                                            {formatNaira(product.price)}
                                         </span>
                                     </TableCell>
                                     <TableCell>
@@ -141,16 +148,17 @@ export function ProductsTable() {
                                         <DropdownMenu>
                                             <DropdownMenuTrigger asChild>
                                                 <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
-                                                    <IconFileHorizontal className="h-4 w-4" />
+                                                    <IconDotsVertical className="h-4 w-4" />
                                                     <span className="sr-only">Open menu</span>
                                                 </Button>
                                             </DropdownMenuTrigger>
                                             <DropdownMenuContent align="end">
                                                 <DropdownMenuLabel>Actions</DropdownMenuLabel>
                                                 <DropdownMenuSeparator />
-                                                <DropdownMenuItem>
-                                                    <IconEye className="w-4 h-4 mr-2" />
-                                                    View
+                                                <DropdownMenuItem asChild>
+                                                    <Link to="/vendor/products/$id" params={{ id: product.id }}>                                                        <IconEye className="w-4 h-4 mr-2" />
+                                                        View
+                                                    </Link>
                                                 </DropdownMenuItem>
                                                 <DropdownMenuItem onClick={() => openEditDialog(product)}>
                                                     <IconPencil className="w-4 h-4 mr-2" />

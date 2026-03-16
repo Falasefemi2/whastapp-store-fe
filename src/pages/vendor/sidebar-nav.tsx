@@ -1,6 +1,6 @@
 import { useCurrentUser } from "@/api/auth/auth.queries"
 import { cn } from "@/lib/utils"
-import { IconLayoutDashboard, IconPackage, IconPlus } from "@tabler/icons-react"
+import { IconLayoutDashboard, IconPackage } from "@tabler/icons-react"
 import { Link } from "@tanstack/react-router"
 import { useLocation } from "@tanstack/react-router"
 
@@ -13,7 +13,6 @@ interface NavItem {
 const navItems: NavItem[] = [
     { label: 'Dashboard', href: '/vendor/dashboard', icon: <IconLayoutDashboard className="w-5 h-5" /> },
     { label: 'Products', href: '/vendor/products', icon: <IconPackage className="w-5 h-5" /> },
-    { label: 'Add Product', href: '/add-product', icon: <IconPlus className="w-5 h-5" /> },
 ]
 
 export function SidebarNav() {
@@ -56,7 +55,7 @@ export function SidebarNav() {
 
             {/* Footer Section */}
             <div className="pt-4 border-t border-sidebar-border text-xs text-sidebar-accent-foreground opacity-60">
-                <p>© 2024 VendorHub</p>
+                <p>© 2026 VendorHub</p>
             </div>
         </aside>
     )

@@ -13,157 +13,227 @@ import { Route as RegisterRouteImport } from './routes/register'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as ProtectedRouteImport } from './routes/_protected'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as StoreSlugRouteImport } from './routes/store/$slug'
 import { Route as ProtectedVendorDashboardRouteImport } from './routes/_protected/vendor/dashboard'
 import { Route as ProtectedAdminDashboardRouteImport } from './routes/_protected/admin/dashboard'
+import { Route as ProtectedVendorProductsIndexRouteImport } from './routes/_protected/vendor/products/index'
+import { Route as ProtectedVendorProductsIdRouteImport } from './routes/_protected/vendor/products/$id'
 
 const RegisterRoute = RegisterRouteImport.update({
-    id: '/register',
-    path: '/register',
-    getParentRoute: () => rootRouteImport,
+  id: '/register',
+  path: '/register',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const LoginRoute = LoginRouteImport.update({
-    id: '/login',
-    path: '/login',
-    getParentRoute: () => rootRouteImport,
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const ProtectedRoute = ProtectedRouteImport.update({
-    id: '/_protected',
-    getParentRoute: () => rootRouteImport,
+  id: '/_protected',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
-    id: '/',
-    path: '/',
-    getParentRoute: () => rootRouteImport,
+  id: '/',
+  path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StoreSlugRoute = StoreSlugRouteImport.update({
+  id: '/store/$slug',
+  path: '/store/$slug',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const ProtectedVendorDashboardRoute =
-    ProtectedVendorDashboardRouteImport.update({
-        id: '/vendor/dashboard',
-        path: '/vendor/dashboard',
-        getParentRoute: () => ProtectedRoute,
-    } as any)
-const ProtectedAdminDashboardRoute = ProtectedAdminDashboardRouteImport.update({
-    id: '/admin/dashboard',
-    path: '/admin/dashboard',
+  ProtectedVendorDashboardRouteImport.update({
+    id: '/vendor/dashboard',
+    path: '/vendor/dashboard',
     getParentRoute: () => ProtectedRoute,
+  } as any)
+const ProtectedAdminDashboardRoute = ProtectedAdminDashboardRouteImport.update({
+  id: '/admin/dashboard',
+  path: '/admin/dashboard',
+  getParentRoute: () => ProtectedRoute,
 } as any)
+const ProtectedVendorProductsIndexRoute =
+  ProtectedVendorProductsIndexRouteImport.update({
+    id: '/vendor/products/',
+    path: '/vendor/products/',
+    getParentRoute: () => ProtectedRoute,
+  } as any)
+const ProtectedVendorProductsIdRoute =
+  ProtectedVendorProductsIdRouteImport.update({
+    id: '/vendor/products/$id',
+    path: '/vendor/products/$id',
+    getParentRoute: () => ProtectedRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
-    '/': typeof IndexRoute
-    '/login': typeof LoginRoute
-    '/register': typeof RegisterRoute
-    '/admin/dashboard': typeof ProtectedAdminDashboardRoute
-    '/vendor/dashboard': typeof ProtectedVendorDashboardRoute
+  '/': typeof IndexRoute
+  '/login': typeof LoginRoute
+  '/register': typeof RegisterRoute
+  '/store/$slug': typeof StoreSlugRoute
+  '/admin/dashboard': typeof ProtectedAdminDashboardRoute
+  '/vendor/dashboard': typeof ProtectedVendorDashboardRoute
+  '/vendor/products/$id': typeof ProtectedVendorProductsIdRoute
+  '/vendor/products/': typeof ProtectedVendorProductsIndexRoute
 }
 export interface FileRoutesByTo {
-    '/': typeof IndexRoute
-    '/login': typeof LoginRoute
-    '/register': typeof RegisterRoute
-    '/admin/dashboard': typeof ProtectedAdminDashboardRoute
-    '/vendor/dashboard': typeof ProtectedVendorDashboardRoute
+  '/': typeof IndexRoute
+  '/login': typeof LoginRoute
+  '/register': typeof RegisterRoute
+  '/store/$slug': typeof StoreSlugRoute
+  '/admin/dashboard': typeof ProtectedAdminDashboardRoute
+  '/vendor/dashboard': typeof ProtectedVendorDashboardRoute
+  '/vendor/products/$id': typeof ProtectedVendorProductsIdRoute
+  '/vendor/products': typeof ProtectedVendorProductsIndexRoute
 }
 export interface FileRoutesById {
-    __root__: typeof rootRouteImport
-    '/': typeof IndexRoute
-    '/_protected': typeof ProtectedRouteWithChildren
-    '/login': typeof LoginRoute
-    '/register': typeof RegisterRoute
-    '/_protected/admin/dashboard': typeof ProtectedAdminDashboardRoute
-    '/_protected/vendor/dashboard': typeof ProtectedVendorDashboardRoute
+  __root__: typeof rootRouteImport
+  '/': typeof IndexRoute
+  '/_protected': typeof ProtectedRouteWithChildren
+  '/login': typeof LoginRoute
+  '/register': typeof RegisterRoute
+  '/store/$slug': typeof StoreSlugRoute
+  '/_protected/admin/dashboard': typeof ProtectedAdminDashboardRoute
+  '/_protected/vendor/dashboard': typeof ProtectedVendorDashboardRoute
+  '/_protected/vendor/products/$id': typeof ProtectedVendorProductsIdRoute
+  '/_protected/vendor/products/': typeof ProtectedVendorProductsIndexRoute
 }
 export interface FileRouteTypes {
-    fileRoutesByFullPath: FileRoutesByFullPath
-    fullPaths:
+  fileRoutesByFullPath: FileRoutesByFullPath
+  fullPaths:
     | '/'
     | '/login'
     | '/register'
+    | '/store/$slug'
     | '/admin/dashboard'
     | '/vendor/dashboard'
-    fileRoutesByTo: FileRoutesByTo
-    to: '/' | '/login' | '/register' | '/admin/dashboard' | '/vendor/dashboard'
-    id:
+    | '/vendor/products/$id'
+    | '/vendor/products/'
+  fileRoutesByTo: FileRoutesByTo
+  to:
+    | '/'
+    | '/login'
+    | '/register'
+    | '/store/$slug'
+    | '/admin/dashboard'
+    | '/vendor/dashboard'
+    | '/vendor/products/$id'
+    | '/vendor/products'
+  id:
     | '__root__'
     | '/'
     | '/_protected'
     | '/login'
     | '/register'
+    | '/store/$slug'
     | '/_protected/admin/dashboard'
     | '/_protected/vendor/dashboard'
-    fileRoutesById: FileRoutesById
+    | '/_protected/vendor/products/$id'
+    | '/_protected/vendor/products/'
+  fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-    IndexRoute: typeof IndexRoute
-    ProtectedRoute: typeof ProtectedRouteWithChildren
-    LoginRoute: typeof LoginRoute
-    RegisterRoute: typeof RegisterRoute
+  IndexRoute: typeof IndexRoute
+  ProtectedRoute: typeof ProtectedRouteWithChildren
+  LoginRoute: typeof LoginRoute
+  RegisterRoute: typeof RegisterRoute
+  StoreSlugRoute: typeof StoreSlugRoute
 }
 
 declare module '@tanstack/react-router' {
-    interface FileRoutesByPath {
-        '/register': {
-            id: '/register'
-            path: '/register'
-            fullPath: '/register'
-            preLoaderRoute: typeof RegisterRouteImport
-            parentRoute: typeof rootRouteImport
-        }
-        '/login': {
-            id: '/login'
-            path: '/login'
-            fullPath: '/login'
-            preLoaderRoute: typeof LoginRouteImport
-            parentRoute: typeof rootRouteImport
-        }
-        '/_protected': {
-            id: '/_protected'
-            path: ''
-            fullPath: '/'
-            preLoaderRoute: typeof ProtectedRouteImport
-            parentRoute: typeof rootRouteImport
-        }
-        '/': {
-            id: '/'
-            path: '/'
-            fullPath: '/'
-            preLoaderRoute: typeof IndexRouteImport
-            parentRoute: typeof rootRouteImport
-        }
-        '/_protected/vendor/dashboard': {
-            id: '/_protected/vendor/dashboard'
-            path: '/vendor/dashboard'
-            fullPath: '/vendor/dashboard'
-            preLoaderRoute: typeof ProtectedVendorDashboardRouteImport
-            parentRoute: typeof ProtectedRoute
-        }
-        '/_protected/admin/dashboard': {
-            id: '/_protected/admin/dashboard'
-            path: '/admin/dashboard'
-            fullPath: '/admin/dashboard'
-            preLoaderRoute: typeof ProtectedAdminDashboardRouteImport
-            parentRoute: typeof ProtectedRoute
-        }
+  interface FileRoutesByPath {
+    '/register': {
+      id: '/register'
+      path: '/register'
+      fullPath: '/register'
+      preLoaderRoute: typeof RegisterRouteImport
+      parentRoute: typeof rootRouteImport
     }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_protected': {
+      id: '/_protected'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof ProtectedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/store/$slug': {
+      id: '/store/$slug'
+      path: '/store/$slug'
+      fullPath: '/store/$slug'
+      preLoaderRoute: typeof StoreSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_protected/vendor/dashboard': {
+      id: '/_protected/vendor/dashboard'
+      path: '/vendor/dashboard'
+      fullPath: '/vendor/dashboard'
+      preLoaderRoute: typeof ProtectedVendorDashboardRouteImport
+      parentRoute: typeof ProtectedRoute
+    }
+    '/_protected/admin/dashboard': {
+      id: '/_protected/admin/dashboard'
+      path: '/admin/dashboard'
+      fullPath: '/admin/dashboard'
+      preLoaderRoute: typeof ProtectedAdminDashboardRouteImport
+      parentRoute: typeof ProtectedRoute
+    }
+    '/_protected/vendor/products/': {
+      id: '/_protected/vendor/products/'
+      path: '/vendor/products'
+      fullPath: '/vendor/products/'
+      preLoaderRoute: typeof ProtectedVendorProductsIndexRouteImport
+      parentRoute: typeof ProtectedRoute
+    }
+    '/_protected/vendor/products/$id': {
+      id: '/_protected/vendor/products/$id'
+      path: '/vendor/products/$id'
+      fullPath: '/vendor/products/$id'
+      preLoaderRoute: typeof ProtectedVendorProductsIdRouteImport
+      parentRoute: typeof ProtectedRoute
+    }
+  }
 }
 
 interface ProtectedRouteChildren {
-    ProtectedAdminDashboardRoute: typeof ProtectedAdminDashboardRoute
-    ProtectedVendorDashboardRoute: typeof ProtectedVendorDashboardRoute
+  ProtectedAdminDashboardRoute: typeof ProtectedAdminDashboardRoute
+  ProtectedVendorDashboardRoute: typeof ProtectedVendorDashboardRoute
+  ProtectedVendorProductsIdRoute: typeof ProtectedVendorProductsIdRoute
+  ProtectedVendorProductsIndexRoute: typeof ProtectedVendorProductsIndexRoute
 }
 
 const ProtectedRouteChildren: ProtectedRouteChildren = {
-    ProtectedAdminDashboardRoute: ProtectedAdminDashboardRoute,
-    ProtectedVendorDashboardRoute: ProtectedVendorDashboardRoute,
+  ProtectedAdminDashboardRoute: ProtectedAdminDashboardRoute,
+  ProtectedVendorDashboardRoute: ProtectedVendorDashboardRoute,
+  ProtectedVendorProductsIdRoute: ProtectedVendorProductsIdRoute,
+  ProtectedVendorProductsIndexRoute: ProtectedVendorProductsIndexRoute,
 }
 
 const ProtectedRouteWithChildren = ProtectedRoute._addFileChildren(
-    ProtectedRouteChildren,
+  ProtectedRouteChildren,
 )
 
 const rootRouteChildren: RootRouteChildren = {
-    IndexRoute: IndexRoute,
-    ProtectedRoute: ProtectedRouteWithChildren,
-    LoginRoute: LoginRoute,
-    RegisterRoute: RegisterRoute,
+  IndexRoute: IndexRoute,
+  ProtectedRoute: ProtectedRouteWithChildren,
+  LoginRoute: LoginRoute,
+  RegisterRoute: RegisterRoute,
+  StoreSlugRoute: StoreSlugRoute,
 }
 export const routeTree = rootRouteImport
-    ._addFileChildren(rootRouteChildren)
-    ._addFileTypes<FileRouteTypes>()
+  ._addFileChildren(rootRouteChildren)
+  ._addFileTypes<FileRouteTypes>()

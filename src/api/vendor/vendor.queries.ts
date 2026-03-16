@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
-import { createProduct, getProductByID, updateProduct, deleteProduct, getAllVendorProduct, toggleProduct, dashboardStat } from "./vendor.api"
+import { createProduct, getProductByID, updateProduct, deleteProduct, getAllVendorProduct, toggleProduct, dashboardStat, getVendorBySlug } from "./vendor.api"
 import { toast } from "sonner"
 import type { CreateProduct, UpdateProduct } from "./vendor.types"
 
@@ -79,5 +79,12 @@ export const useToggleProduct = () => {
         onError: (err: any) => {
             toast.error(err?.message || "Failed to toggle product")
         }
+    })
+}
+
+export const useGetVendorBySlug = (slug: string) => {
+    return useQuery({
+        queryKey: ["vendor", slug],
+        queryFn: () => getVendorBySlug(slug),
     })
 }

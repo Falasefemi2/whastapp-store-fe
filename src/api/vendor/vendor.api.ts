@@ -1,5 +1,5 @@
 import apiClient from "../client";
-import type { Product, CreateProduct, UpdateProduct, DashboardStat } from "./vendor.types";
+import type { Product, CreateProduct, UpdateProduct, DashboardStat, PublicVendor } from "./vendor.types";
 
 export const createProduct = async (payload: CreateProduct) => {
     const formData = new FormData()
@@ -44,5 +44,10 @@ export const toggleProduct = async (id: string) => {
 
 export const dashboardStat = async () => {
     const response = await apiClient.get<DashboardStat>("/dashboard/stats")
+    return response.data;
+}
+
+export const getVendorBySlug = async (slug: string) => {
+    const response = await apiClient.get<PublicVendor>(`/vendors/stores/${slug}`)
     return response.data;
 }

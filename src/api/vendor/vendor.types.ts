@@ -31,3 +31,15 @@ export interface DashboardStat {
     totalVisits: number;
     recentVisits: number;
 }
+
+export interface PublicVendor {
+    id: string
+    storeName: string
+    phone: string
+    logoUrl: string | null
+    slug: string
+    approved: boolean
+    approvedAt: string
+    createdAt: string
+    products: Product[]
+}
