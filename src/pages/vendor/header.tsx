@@ -7,7 +7,7 @@ import {
     DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { IconBell, IconChevronDown, IconUser } from '@tabler/icons-react'
+import { IconChevronDown, IconUser } from '@tabler/icons-react'
 import { useCurrentUser } from '@/api/auth/auth.queries';
 
 export function Header() {
@@ -22,12 +22,6 @@ export function Header() {
             </div>
 
             <div className="flex items-center gap-6">
-                {/* Notification Bell */}
-                <button className="relative p-2 hover:bg-secondary rounded-lg transition-colors">
-                    <IconBell className="w-5 h-5 text-foreground" />
-                    <span className="absolute top-1 right-1 w-2 h-2 bg-accent rounded-full"></span>
-                </button>
-
                 {/* Profile Dropdown */}
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
@@ -47,13 +41,7 @@ export function Header() {
                         <DropdownMenuSeparator />
                         <DropdownMenuItem>
                             <IconUser className="w-4 h-4 mr-2" />
-                            <span>Profile Settings</span>
-                        </DropdownMenuItem>
-                        <DropdownMenuItem>
-                            <span>Store Settings</span>
-                        </DropdownMenuItem>
-                        <DropdownMenuItem>
-                            <span>Billing & Plan</span>
+                            <span>Profile</span>
                         </DropdownMenuItem>
                         <DropdownMenuSeparator />
                         <DropdownMenuItem>

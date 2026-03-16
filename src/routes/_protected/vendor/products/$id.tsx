@@ -7,6 +7,7 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { IconArrowLeft } from '@tabler/icons-react'
 import { Link } from '@tanstack/react-router'
+import { formatNaira } from '@/lib/utils'
 
 export const Route = createFileRoute('/_protected/vendor/products/$id')({
     beforeLoad: ({ context }) => {
@@ -117,7 +118,7 @@ function RouteComponent() {
                                     <div className="grid grid-cols-2 gap-6">
                                         <div>
                                             <h3 className="text-sm font-semibold text-foreground mb-2">Price</h3>
-                                            <p className="text-2xl font-bold text-accent">${Number(product.price).toFixed(2)}</p>
+                                            <p className="text-2xl font-bold text-accent">{formatNaira(product.price)}</p>
                                         </div>
                                         <div>
                                             <h3 className="text-sm font-semibold text-foreground mb-2">Stock Quantity</h3>
