@@ -17,70 +17,70 @@ import { Route as ProtectedVendorDashboardRouteImport } from './routes/_protecte
 import { Route as ProtectedAdminDashboardRouteImport } from './routes/_protected/admin/dashboard'
 
 const RegisterRoute = RegisterRouteImport.update({
-  id: '/register',
-  path: '/register',
-  getParentRoute: () => rootRouteImport,
+    id: '/register',
+    path: '/register',
+    getParentRoute: () => rootRouteImport,
 } as any)
 const LoginRoute = LoginRouteImport.update({
-  id: '/login',
-  path: '/login',
-  getParentRoute: () => rootRouteImport,
+    id: '/login',
+    path: '/login',
+    getParentRoute: () => rootRouteImport,
 } as any)
 const ProtectedRoute = ProtectedRouteImport.update({
-  id: '/_protected',
-  getParentRoute: () => rootRouteImport,
+    id: '/_protected',
+    getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => rootRouteImport,
+    id: '/',
+    path: '/',
+    getParentRoute: () => rootRouteImport,
 } as any)
 const ProtectedVendorDashboardRoute =
-  ProtectedVendorDashboardRouteImport.update({
-    id: '/vendor/dashboard',
-    path: '/vendor/dashboard',
-    getParentRoute: () => ProtectedRoute,
-  } as any)
+    ProtectedVendorDashboardRouteImport.update({
+        id: '/vendor/dashboard',
+        path: '/vendor/dashboard',
+        getParentRoute: () => ProtectedRoute,
+    } as any)
 const ProtectedAdminDashboardRoute = ProtectedAdminDashboardRouteImport.update({
-  id: '/admin/dashboard',
-  path: '/admin/dashboard',
-  getParentRoute: () => ProtectedRoute,
+    id: '/admin/dashboard',
+    path: '/admin/dashboard',
+    getParentRoute: () => ProtectedRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/login': typeof LoginRoute
-  '/register': typeof RegisterRoute
-  '/admin/dashboard': typeof ProtectedAdminDashboardRoute
-  '/vendor/dashboard': typeof ProtectedVendorDashboardRoute
+    '/': typeof IndexRoute
+    '/login': typeof LoginRoute
+    '/register': typeof RegisterRoute
+    '/admin/dashboard': typeof ProtectedAdminDashboardRoute
+    '/vendor/dashboard': typeof ProtectedVendorDashboardRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/login': typeof LoginRoute
-  '/register': typeof RegisterRoute
-  '/admin/dashboard': typeof ProtectedAdminDashboardRoute
-  '/vendor/dashboard': typeof ProtectedVendorDashboardRoute
+    '/': typeof IndexRoute
+    '/login': typeof LoginRoute
+    '/register': typeof RegisterRoute
+    '/admin/dashboard': typeof ProtectedAdminDashboardRoute
+    '/vendor/dashboard': typeof ProtectedVendorDashboardRoute
 }
 export interface FileRoutesById {
-  __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
-  '/_protected': typeof ProtectedRouteWithChildren
-  '/login': typeof LoginRoute
-  '/register': typeof RegisterRoute
-  '/_protected/admin/dashboard': typeof ProtectedAdminDashboardRoute
-  '/_protected/vendor/dashboard': typeof ProtectedVendorDashboardRoute
+    __root__: typeof rootRouteImport
+    '/': typeof IndexRoute
+    '/_protected': typeof ProtectedRouteWithChildren
+    '/login': typeof LoginRoute
+    '/register': typeof RegisterRoute
+    '/_protected/admin/dashboard': typeof ProtectedAdminDashboardRoute
+    '/_protected/vendor/dashboard': typeof ProtectedVendorDashboardRoute
 }
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
+    fileRoutesByFullPath: FileRoutesByFullPath
+    fullPaths:
     | '/'
     | '/login'
     | '/register'
     | '/admin/dashboard'
     | '/vendor/dashboard'
-  fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login' | '/register' | '/admin/dashboard' | '/vendor/dashboard'
-  id:
+    fileRoutesByTo: FileRoutesByTo
+    to: '/' | '/login' | '/register' | '/admin/dashboard' | '/vendor/dashboard'
+    id:
     | '__root__'
     | '/'
     | '/_protected'
@@ -88,82 +88,82 @@ export interface FileRouteTypes {
     | '/register'
     | '/_protected/admin/dashboard'
     | '/_protected/vendor/dashboard'
-  fileRoutesById: FileRoutesById
+    fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  ProtectedRoute: typeof ProtectedRouteWithChildren
-  LoginRoute: typeof LoginRoute
-  RegisterRoute: typeof RegisterRoute
+    IndexRoute: typeof IndexRoute
+    ProtectedRoute: typeof ProtectedRouteWithChildren
+    LoginRoute: typeof LoginRoute
+    RegisterRoute: typeof RegisterRoute
 }
 
 declare module '@tanstack/react-router' {
-  interface FileRoutesByPath {
-    '/register': {
-      id: '/register'
-      path: '/register'
-      fullPath: '/register'
-      preLoaderRoute: typeof RegisterRouteImport
-      parentRoute: typeof rootRouteImport
+    interface FileRoutesByPath {
+        '/register': {
+            id: '/register'
+            path: '/register'
+            fullPath: '/register'
+            preLoaderRoute: typeof RegisterRouteImport
+            parentRoute: typeof rootRouteImport
+        }
+        '/login': {
+            id: '/login'
+            path: '/login'
+            fullPath: '/login'
+            preLoaderRoute: typeof LoginRouteImport
+            parentRoute: typeof rootRouteImport
+        }
+        '/_protected': {
+            id: '/_protected'
+            path: ''
+            fullPath: '/'
+            preLoaderRoute: typeof ProtectedRouteImport
+            parentRoute: typeof rootRouteImport
+        }
+        '/': {
+            id: '/'
+            path: '/'
+            fullPath: '/'
+            preLoaderRoute: typeof IndexRouteImport
+            parentRoute: typeof rootRouteImport
+        }
+        '/_protected/vendor/dashboard': {
+            id: '/_protected/vendor/dashboard'
+            path: '/vendor/dashboard'
+            fullPath: '/vendor/dashboard'
+            preLoaderRoute: typeof ProtectedVendorDashboardRouteImport
+            parentRoute: typeof ProtectedRoute
+        }
+        '/_protected/admin/dashboard': {
+            id: '/_protected/admin/dashboard'
+            path: '/admin/dashboard'
+            fullPath: '/admin/dashboard'
+            preLoaderRoute: typeof ProtectedAdminDashboardRouteImport
+            parentRoute: typeof ProtectedRoute
+        }
     }
-    '/login': {
-      id: '/login'
-      path: '/login'
-      fullPath: '/login'
-      preLoaderRoute: typeof LoginRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/_protected': {
-      id: '/_protected'
-      path: ''
-      fullPath: '/'
-      preLoaderRoute: typeof ProtectedRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/_protected/vendor/dashboard': {
-      id: '/_protected/vendor/dashboard'
-      path: '/vendor/dashboard'
-      fullPath: '/vendor/dashboard'
-      preLoaderRoute: typeof ProtectedVendorDashboardRouteImport
-      parentRoute: typeof ProtectedRoute
-    }
-    '/_protected/admin/dashboard': {
-      id: '/_protected/admin/dashboard'
-      path: '/admin/dashboard'
-      fullPath: '/admin/dashboard'
-      preLoaderRoute: typeof ProtectedAdminDashboardRouteImport
-      parentRoute: typeof ProtectedRoute
-    }
-  }
 }
 
 interface ProtectedRouteChildren {
-  ProtectedAdminDashboardRoute: typeof ProtectedAdminDashboardRoute
-  ProtectedVendorDashboardRoute: typeof ProtectedVendorDashboardRoute
+    ProtectedAdminDashboardRoute: typeof ProtectedAdminDashboardRoute
+    ProtectedVendorDashboardRoute: typeof ProtectedVendorDashboardRoute
 }
 
 const ProtectedRouteChildren: ProtectedRouteChildren = {
-  ProtectedAdminDashboardRoute: ProtectedAdminDashboardRoute,
-  ProtectedVendorDashboardRoute: ProtectedVendorDashboardRoute,
+    ProtectedAdminDashboardRoute: ProtectedAdminDashboardRoute,
+    ProtectedVendorDashboardRoute: ProtectedVendorDashboardRoute,
 }
 
 const ProtectedRouteWithChildren = ProtectedRoute._addFileChildren(
-  ProtectedRouteChildren,
+    ProtectedRouteChildren,
 )
 
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
-  ProtectedRoute: ProtectedRouteWithChildren,
-  LoginRoute: LoginRoute,
-  RegisterRoute: RegisterRoute,
+    IndexRoute: IndexRoute,
+    ProtectedRoute: ProtectedRouteWithChildren,
+    LoginRoute: LoginRoute,
+    RegisterRoute: RegisterRoute,
 }
 export const routeTree = rootRouteImport
-  ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>()
+    ._addFileChildren(rootRouteChildren)
+    ._addFileTypes<FileRouteTypes>()
