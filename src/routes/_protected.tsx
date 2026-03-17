@@ -2,7 +2,7 @@ import { getCurrentUser } from "@/api/auth/auth.api"
 import { createFileRoute, Outlet, redirect } from "@tanstack/react-router"
 
 export const Route = createFileRoute("/_protected")({
-    beforeLoad: async ({ context }) => {
+    beforeLoad: async () => {
         try {
             const data = await getCurrentUser()
             console.log({ data })
