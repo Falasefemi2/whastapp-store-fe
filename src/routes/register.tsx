@@ -58,7 +58,7 @@ function RegisterPage({
     const onSubmit = async (data: RegisterPayload) => {
         try {
             await registerMutation.mutateAsync(data)
-            navigate({ to: "/" })
+            navigate({ to: "/login" })
         } catch {
             // handled by react-query
         }
