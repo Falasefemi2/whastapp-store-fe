@@ -19,6 +19,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { Controller, useForm } from "react-hook-form"
 import * as z from "zod"
 import { toast } from "sonner"
+import axios from "axios"
 
 export const Route = createFileRoute("/login")({
     component: LoginPage,
@@ -58,8 +59,10 @@ function LoginPage({
             } else {
                 navigate({ to: "/vendor/dashboard" })
             }
-        } catch {
-            // handled by react query
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                toast.error(error.response?.data?.message)
+            }
         }
     }
 
