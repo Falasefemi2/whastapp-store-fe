@@ -1,55 +1,68 @@
 import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { IconChevronDown, IconUser } from '@tabler/icons-react'
-import { useCurrentUser } from '@/api/auth/auth.queries';
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { IconChevronDown, IconUser } from "@tabler/icons-react"
+import { useCurrentUser } from "@/api/auth/auth.queries"
 
 export function Header() {
+  const { data } = useCurrentUser()
 
-    const { data } = useCurrentUser();
+  return (
+    <header className="fixed top-0 right-0 left-64 flex h-16 items-center justify-between border-b border-black/6 bg-[#e8e8e8] px-8">
+      <div>
+        <h1 className="text-[15px] font-semibold tracking-tight text-[#1a1a1a]">
+          {data?.user.vendor.storeName}
+        </h1>
+        <p className="text-[11px] text-[#999]">Vendor Dashboard</p>
+      </div>
 
-    return (
-        <header className="fixed top-0 right-0 left-64 h-16 border-b border-border bg-card flex items-center justify-between px-8">
-            <div>
-                <h1 className="text-lg font-semibold text-foreground">{data?.user.vendor.storeName}</h1>
-                <p className="text-xs text-muted-foreground">Vendor Dashboard</p>
-            </div>
-
-            <div className="flex items-center gap-6">
-                {/* Profile Dropdown */}
-                <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                        <button className="flex items-center gap-3 p-2 hover:bg-secondary rounded-lg transition-colors">
-                            <Avatar className="w-8 h-8">
-                                <AvatarImage src={data?.user.vendor.logoUrl ?? undefined} alt="Vendor" />
-                                <AvatarFallback>VC</AvatarFallback>
-                            </Avatar>
-                            <div className="flex items-center gap-1">
-                                <span className="text-sm font-medium text-foreground hidden sm:inline">{data?.user.name}</span>
-                                <IconChevronDown className="w-4 h-4 text-muted-foreground" />
-                            </div>
-                        </button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end" className="w-56">
-                        <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                        <DropdownMenuSeparator />
-                        <DropdownMenuItem>
-                            <IconUser className="w-4 h-4 mr-2" />
-                            <span>Profile</span>
-                        </DropdownMenuItem>
-                        <DropdownMenuSeparator />
-                        <DropdownMenuItem>
-                            <span className="text-destructive">Logout</span>
-                        </DropdownMenuItem>
-                    </DropdownMenuContent>
-                </DropdownMenu>
-            </div>
-        </header>
-    )
+      <div className="flex items-center gap-6">
+        {/* Profile Dropdown */}
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <button className="flex items-center gap-2.5 rounded-xl px-3 py-2 transition-colors hover:bg-black/5">
+              <Avatar className="h-7 w-7">
+                <AvatarImage
+                  src={data?.user.vendor.logoUrl ?? undefined}
+                  alt="Vendor"
+                />
+                <AvatarFallback className="bg-[#2d4a3e] text-[11px] font-semibold text-white">
+                  {data?.user.name?.charAt(0) ?? "V"}
+                </AvatarFallback>
+              </Avatar>
+              <div className="flex items-center gap-1">
+                <span className="hidden text-[13px] font-medium text-[#1a1a1a] sm:inline">
+                  {data?.user.name}
+                </span>
+                <IconChevronDown className="h-3.5 w-3.5 text-[#999]" />
+              </div>
+            </button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent
+            align="end"
+            className="w-56 rounded-xl border border-[#d4d4d4] bg-white shadow-sm"
+          >
+            <DropdownMenuLabel className="text-[12px] font-normal text-[#999]">
+              My Account
+            </DropdownMenuLabel>
+            <DropdownMenuSeparator className="bg-[#eee]" />
+            <DropdownMenuItem className="cursor-pointer rounded-lg text-[13px] text-[#1a1a1a]">
+              <IconUser className="mr-2 h-4 w-4 text-[#777]" />
+              <span>Profile</span>
+            </DropdownMenuItem>
+            <DropdownMenuSeparator className="bg-[#eee]" />
+            <DropdownMenuItem className="cursor-pointer rounded-lg text-[13px]">
+              <span className="text-red-500">Logout</span>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
+    </header>
+  )
 }
