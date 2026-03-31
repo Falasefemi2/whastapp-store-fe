@@ -52,13 +52,15 @@ export function Header() {
               My Account
             </DropdownMenuLabel>
             <DropdownMenuSeparator className="bg-[#eee]" />
-            <DropdownMenuItem className="cursor-pointer rounded-lg text-[13px] text-[#1a1a1a]">
-              <IconUser className="mr-2 h-4 w-4 text-[#777]" />
+            <DropdownMenuItem className="group cursor-pointer rounded-lg text-[13px] text-[#1a1a1a] transition-colors hover:bg-[#2d4a3e] hover:text-white">
+              <IconUser className="mr-2 h-4 w-4 text-[#777] group-hover:text-white" />
               <span>Profile</span>
             </DropdownMenuItem>
-            <DropdownMenuSeparator className="bg-[#eee]" />
-            <DropdownMenuItem className="cursor-pointer rounded-lg text-[13px]">
-              <span className="text-red-500">Logout</span>
+
+            <DropdownMenuItem className="group cursor-pointer rounded-lg text-[13px] transition-colors hover:bg-[#2d4a3e] hover:text-white">
+              <span className="text-red-500 group-hover:text-white">
+                Logout
+              </span>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
