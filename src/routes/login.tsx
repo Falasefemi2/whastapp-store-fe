@@ -266,34 +266,6 @@ function LoginPage() {
           </form>
         </div>
       </main>
-
-      {/* Footer */}
-      <footer className="flex items-center justify-between bg-[#1f1f1f] px-8 py-5">
-        <div className="flex items-center gap-3">
-          <CohereLogoIcon className="h-9 w-9" />
-          <span className="text-[17px] font-medium tracking-tight text-white">
-            WhatsApp Vendors
-          </span>
-        </div>
-        <div className="flex items-center gap-2 text-[14px] text-[#aaa]">
-          <span>curated by</span>
-          <div className="flex items-center gap-1.5">
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 40 40"
-              fill="none"
-              aria-hidden="true"
-            >
-              <rect width="40" height="40" rx="8" fill="white" />
-              <path d="M8 20 L20 8 L32 20 L20 32 Z" fill="#1a1a1a" />
-            </svg>
-            <span className="text-[15px] font-semibold tracking-tight text-white">
-              Falase Femi
-            </span>
-          </div>
-        </div>
-      </footer>
     </div>
   )
 }
